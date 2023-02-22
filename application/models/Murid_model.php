@@ -16,6 +16,17 @@ class Murid_model extends CI_Model
     return $query->result();
   }
 
+  public function get_murid_by_guru($id_guru)
+  {
+    $this->db->select('*');
+    $this->db->from('murid m');
+    $this->db->join('akses_murid am', 'm.id_murid = am.id_murid');
+    $this->db->where('am.id_guru', $id_guru);
+
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function get_by_id($id_murid)
   {
     $this->db->select('*');

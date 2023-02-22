@@ -38,32 +38,36 @@ class Nilai extends CI_Controller
   public function create()
   {
     // Redirect ke halaman dashboard jika user bukan guru
-    if ($this->session->userdata('role') !== 'guru') {
+    if ($this->session->userdata('user')['role'] !== 'guru') {
       redirect('dashboard');
     }
 
     // Validasi input
-    $this->form_validation->set_rules('siswa_id', 'Siswa', 'required');
+    $this->form_validation->set_rules('murid_id', 'Murid', 'required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'required|numeric');
 
     if ($this->form_validation->run() === FALSE) {
       // Jika form validation gagal, tampilkan kembali halaman create beserta error message
-      $data['siswa'] = $this->Siswa_model->get_all();
+      $id_user = $this->session->userdata('user')['id_user'];
+      $id_guru = $this->db->query("SELECT id_guru from guru where id_user=$id_user")->row()->id_guru;
+      $data['murid_list'] = $this->Murid_model->get_murid_by_guru($id_guru);
 
       $this->load->view('layout/header');
-      $this->load->view('guru/nilai/create', $data);
+      $this->load->view('nilai/create', $data);
       $this->load->view('layout/footer');
     } else {
       // Ambil data guru berdasarkan id user yang sedang login
-      $guru = $this->Guru_model->get_by_user_id($this->session->userdata('user_id'));
+      $id_user = $this->session->userdata('user')['id_user'];
+      $id_guru = $this->db->query("SELECT id_guru from guru where id_user=$id_user")->row()->id_guru;
 
       // Insert data nilai siswa ke database
       $data = array(
-        'guru_id' => $guru->id,
-        'siswa_id' => $this->input->post('siswa_id'),
-        'nilai' => $this->input->post('nilai')
+        'id_guru' => $id_guru,
+        'id_murid' => $this->input->post('murid_id'),
+        'nilai' => $this->input->post('nilai'),
+        'jenis_nilai' => $this->input->post('jenis_nilai')
       );
-      $this->Nilai_model->insert($data);
+      $this->Nilai_model->create($data);
 
       // Set flashdata untuk notifikasi
       $this->session->set_flashdata('success_message', 'Data nilai berhasil ditambahkan.');

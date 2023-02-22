@@ -1,7 +1,7 @@
 <div class="container">
   <!-- header -->
   <h2>Data Nilai</h2>
-  <a href="<?php echo base_url('nilai/add'); ?>" class="btn btn-primary">Tambah Nilai</a>
+  <a href="<?php echo base_url('nilai/create'); ?>" class="btn btn-primary">Tambah Nilai</a>
   <br><br>
   <!-- data -->
   <table class="table table-bordered">

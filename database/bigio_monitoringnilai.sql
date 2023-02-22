@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2023 at 10:22 AM
+-- Generation Time: Feb 22, 2023 at 10:47 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -115,7 +115,8 @@ INSERT INTO `nilai` (`id_nilai`, `id_guru`, `id_murid`, `tgl_nilai`, `jenis_nila
 (15, 1, 2, '2023-02-01', 'UAS', 80),
 (16, 2, 3, '2023-01-01', 'UTS', 70),
 (17, 2, 3, '2023-01-15', 'Tugas', 75),
-(18, 2, 3, '2023-02-01', 'UAS', 65);
+(18, 2, 3, '2023-02-01', 'UAS', 65),
+(19, 1, 1, '0000-00-00', 'UTS', 90);
 
 -- --------------------------------------------------------
 
@@ -208,7 +209,7 @@ ALTER TABLE `murid`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="container">
     <!-- header -->
-    <h2>Nilai Saya (<?= $nilai[0]['nama_murid']; ?>)</h2>
+    <h2>Nilai Saya (<?= $nilai[0]['nama_murid`']; ?>)</h2>
     <br><br>
     <!-- data -->
     <table class="table table-bordered">
