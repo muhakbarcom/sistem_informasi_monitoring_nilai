@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] = 'dashboard';
 $route['login'] = 'login';
+$route['nilai'] = 'nilai';
 $route['logout'] = 'login/logout';

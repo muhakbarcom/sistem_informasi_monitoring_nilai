@@ -21,11 +21,21 @@
         <li class="nav-item active">
           <a class="nav-link" href="<?= base_url('dashboard'); ?>">Dashboard</a>
         </li>
+        <?php if ($this->session->userdata('user')['role'] == 'admin') : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('guru'); ?>">Data Guru</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('murid'); ?>">Data Murid</a>
+          </li>
+
+        <?php elseif ($this->session->userdata('user')['role'] == 'guru') : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('nilai'); ?>">Data Nilai</a>
+          </li>
+        <?php endif ?>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('guru'); ?>">Data Guru</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('murid'); ?>">Data Murid</a>
+          <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>
         </li>
       </ul>
     </div>

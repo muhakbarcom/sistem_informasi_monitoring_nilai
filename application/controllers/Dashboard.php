@@ -40,8 +40,20 @@ class Dashboard extends CI_Controller
   }
   public function murid()
   {
+    $this->load->model('Murid_model');
+    $this->load->model('Nilai_model');
+
+    // Ambil data guru berdasarkan id user yang sedang login
+    $id_murid = $this->Murid_model->get_by_id_user($this->session->userdata('user')['id_user']);
+
+    // Ambil data nilai siswa berdasarkan id guru
+    $nilai = $this->Nilai_model->getBySiswa($id_murid);
+
+
+    // Tampilkan data nilai siswa
+    $data['nilai'] = $nilai;
     $this->load->view('layout/header');
-    $this->load->view('dashboard/murid');
+    $this->load->view('dashboard/murid', $data);
     $this->load->view('layout/footer');
   }
 }

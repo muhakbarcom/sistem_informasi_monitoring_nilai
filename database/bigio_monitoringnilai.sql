@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2023 at 08:34 AM
+-- Generation Time: Feb 22, 2023 at 10:22 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `akses_murid` (
   `id_akses` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_guru` int(11) NOT NULL,
   `id_murid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,7 +37,7 @@ CREATE TABLE `akses_murid` (
 -- Dumping data for table `akses_murid`
 --
 
-INSERT INTO `akses_murid` (`id_akses`, `id_user`, `id_murid`) VALUES
+INSERT INTO `akses_murid` (`id_akses`, `id_guru`, `id_murid`) VALUES
 (4, 1, 1),
 (5, 1, 2),
 (6, 2, 3);
@@ -85,9 +85,7 @@ CREATE TABLE `murid` (
 INSERT INTO `murid` (`id_murid`, `nama_murid`, `alamat_murid`, `telepon_murid`, `id_user`) VALUES
 (1, 'Murid Pertama', 'Jalan Murid Pertama no. 1', '08123456789', 4),
 (2, 'Murid Kedua', 'Jalan Murid Kedua no. 2', '08123456789', 5),
-(3, 'Murid Ketiga', 'Jalan Murid Ketiga no. 3', '08123456789', 6),
-(4, 'cobas', 'akjsndkajsnd', '999', 11),
-(5, 'cobacoba', 'coba', '12341231231', 12);
+(3, 'Murid Ketiga', 'Jalan Murid Ketiga no. 3', '08123456789', 6);
 
 -- --------------------------------------------------------
 
@@ -138,13 +136,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
 (1, 'admin', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'admin'),
-(2, 'guru222', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'guru'),
+(2, 'guru1', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'guru'),
 (3, 'guru2', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'guru'),
 (4, 'murid1', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid'),
 (5, 'murid2', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid'),
-(6, 'murid3', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid'),
-(11, 'coba221s', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid'),
-(12, 'abx', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid');
+(6, 'murid3', '$2y$10$/7Ho4YgwccsStJpb/me37eml7Md8t32w2wlbNTovDKdBMhlVMvtqG', 'murid');
 
 --
 -- Indexes for dumped tables
@@ -155,8 +151,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
 --
 ALTER TABLE `akses_murid`
   ADD PRIMARY KEY (`id_akses`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_murid` (`id_murid`);
+  ADD KEY `id_murid` (`id_murid`),
+  ADD KEY `akses_murid_ibfk_1` (`id_guru`);
 
 --
 -- Indexes for table `guru`
@@ -223,13 +219,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `akses_murid`
---
-ALTER TABLE `akses_murid`
-  ADD CONSTRAINT `akses_murid_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `akses_murid_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `murid` (`id_murid`);
 
 --
 -- Constraints for table `guru`

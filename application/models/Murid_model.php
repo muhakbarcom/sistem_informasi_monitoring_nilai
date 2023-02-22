@@ -26,6 +26,15 @@ class Murid_model extends CI_Model
     return $query->row();
   }
 
+  public function get_by_id_user($id_user)
+  {
+    $this->db->select('id_murid');
+    $this->db->from('murid');
+    $this->db->where('id_user', $id_user);
+    $query = $this->db->get();
+    return $query->row()->id_murid;
+  }
+
   public function insert($data_murid, $data_user)
   {
     $this->db->trans_start();

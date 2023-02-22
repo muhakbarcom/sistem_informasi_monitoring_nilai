@@ -21,7 +21,16 @@
             <p>
               <b>Data login</b>
               <br> <br>
+              <b>admin</b><br>
               Username : admin<br>
+              Password : password123
+              <br> <br>
+              <b>guru</b><br>
+              Username : guru1<br>
+              Password : password123
+              <br> <br>
+              <b>murid</b><br>
+              Username : murid1<br>
               Password : password123
             </p>
           </div>
